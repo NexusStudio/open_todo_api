@@ -4,7 +4,7 @@
  
    def create
      item = Item.new(item_params)
-    #list.user_id = params[:user_id]
+     item.list_id = params[:list_id]
      if item.save
        render json: item
     else
