@@ -13,7 +13,7 @@
    end
  
   def update
-    item = Item.find(params[:id])
+    item = current_list.items.find(params[:id])
     if item.update(item_params)
       render json: item
    else

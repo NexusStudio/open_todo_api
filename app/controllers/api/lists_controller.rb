@@ -14,7 +14,7 @@
    def destroy
      begin
        user = User.find(params[:user_id])
-       list = List.find(params[:id])
+       list = user.lists.find(params[:id])
        list.destroy
        
        render json: {}, status: :no_content
@@ -24,7 +24,7 @@
    end
    
   def update
-   list = List.find(params[:id])
+    list = current_user.lists.find(params[:id])
    if list.update(list_params)
      render json: list
    else
@@ -35,6 +35,6 @@
     private
    
   def list_params
-    params.require(:list).permit(:name, :description)
+    params.require(:list).permit(:name, :description, :permissions)
   end
  end
